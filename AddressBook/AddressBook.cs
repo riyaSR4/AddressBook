@@ -65,5 +65,13 @@ namespace AddressBook
                 }
             }
         }
+        public void Display()
+        {
+            foreach (var data in createAddressBook)
+            {
+                Console.WriteLine(data.FirstName + "\n" + data.LastName + "\n" + data.Address + "\n" + data.City
+                    + "\n" + data.State + "\n" + data.Zip + "\n" + data.PhoneNumber + "\n" + data.Email);
+            }
+        }
     }
 }

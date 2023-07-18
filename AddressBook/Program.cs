@@ -5,9 +5,11 @@ namespace AddressBook
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter the option to proceed\n 1.Create Contact\n 2.Edit Contact\n 3.Display Contact\n " +
-                "4.Delete Contact\n 4.Exit");
+            Console.WriteLine("Enter the option to proceed\n 1.Create Contact\n 2.Add to Dictionary\n " +
+                "3.Edit Contact\n 4.Delete Contact\n " +
+                "5.Display Contact\n 6.Exit");
             bool flag = true;
+            string key = null, input = null;
             CreateAddressBook createAddressBook = new CreateAddressBook();
             while (flag)
             {
@@ -18,19 +20,26 @@ namespace AddressBook
                         createAddressBook.CreateContact();
                         break;
                     case 2:
-                        Console.WriteLine("Enter the name to edit contact details");
-                        string input = Console.ReadLine();
-                        createAddressBook.EditContact(input); 
+                        createAddressBook.AddAddressBookToDictionary();
                         break;
                     case 3:
-                        Console.WriteLine("Enter the name of contact details to be deleted");
-                        string name = Console.ReadLine();
-                        createAddressBook.DeleteContact(name);
+                        Console.WriteLine("Enter Key");
+                        key = Console.ReadLine();
+                        Console.WriteLine("Enter the name to edit contact details");
+                        input = Console.ReadLine();
+                        createAddressBook.EditContact(key, input); 
                         break;
                     case 4:
-                        createAddressBook.Display();
+                        Console.WriteLine("Enter Key");
+                        key = Console.ReadLine();
+                        Console.WriteLine("Enter the name of contact details to be deleted");
+                        input = Console.ReadLine();
+                        createAddressBook.DeleteContact(key, input);
                         break;
                     case 5:
+                        createAddressBook.Display();
+                        break;
+                    case 6:
                         flag = false;
                         break;
                 }

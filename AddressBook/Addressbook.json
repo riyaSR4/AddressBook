@@ -1,1 +1,14 @@
-{"naren":[{"FirstName":"naren","LastName":"123","Address":"123","City":"123","State":"123","Zip":"123","PhoneNumber":"123","Email":"123"}]}
+{
+  "riya": [
+    {
+      "FirstName": "riya",
+      "LastName": "r",
+      "Address": "ann",
+      "City": "pta",
+      "State": "kl",
+      "Zip": "123",
+      "PhoneNumber": "12345",
+      "Email": "riya@"
+    }
+  ]
+}

@@ -15,7 +15,7 @@ namespace AddressBook
             {
                 Console.WriteLine("Enter the option to proceed\n 1.Create Contact\n 2.Add to Dictionary\n " +
                 "3.Edit Contact\n 4.Delete Contact\n " +
-                "5.Display Contact\n 6.Exit");
+                "5.Display Contact\n 6.Add to Json\n 7.Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -44,6 +44,9 @@ namespace AddressBook
                         break;
                     case 6:
                         createAddressBook.AddToJsonFile(filePath);
+                        break;
+                    case 7:
+                        flag = false;
                         break;
                 }
             }

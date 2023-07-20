@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace AddressBook
 {
     public class CreateAddressBook
     {
+
         List<Contact> createAddressBook = new List<Contact>();
         Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
         public void CreateContact()
@@ -33,9 +35,16 @@ namespace AddressBook
         }
         public void AddAddressBookToDictionary()
         {
+            Console.WriteLine("Enter unique name");
             string uniqueName = Console.ReadLine();
             dict.Add(uniqueName, createAddressBook);
-            createAddressBook = null;
+            createAddressBook = new List<Contact>();
+        }
+
+        public void AddToJsonFile(string filePath)
+        {
+            var json = JsonConvert.SerializeObject(dict);
+            File.WriteAllText(filePath, json);
         }
         public void EditContact(string name, string contactName)
         {

@@ -3,16 +3,19 @@ namespace AddressBook
 {
     class Program
     {
+        const string filePath = @"D:\BridgeLabs Training\AddressBook\AddressBook\Addressbook.json";
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter the option to proceed\n 1.Create Contact\n 2.Add to Dictionary\n " +
-                "3.Edit Contact\n 4.Delete Contact\n " +
-                "5.Display Contact\n 6.Exit");
+            
             bool flag = true;
             string key = null, input = null;
             CreateAddressBook createAddressBook = new CreateAddressBook();
             while (flag)
             {
+                Console.WriteLine("Enter the option to proceed\n 1.Create Contact\n 2.Add to Dictionary\n " +
+                "3.Edit Contact\n 4.Delete Contact\n " +
+                "5.Display Contact\n 6.Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -40,7 +43,7 @@ namespace AddressBook
                         createAddressBook.Display();
                         break;
                     case 6:
-                        flag = false;
+                        createAddressBook.AddToJsonFile(filePath);
                         break;
                 }
             }

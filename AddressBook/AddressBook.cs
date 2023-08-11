@@ -150,6 +150,7 @@ namespace AddressBook
                         Console.WriteLine("Enter the city to search");
                         string city = Console.ReadLine();
                         List<Contact> contact = new List<Contact>();
+                        Console.WriteLine("The persons in the city " + city + " are: ");
                         foreach (var data in dict)
                         {
                             contact = data.Value.Where(x => x.City.Equals(city)).ToList();
@@ -163,7 +164,7 @@ namespace AddressBook
                         Console.WriteLine("Enter the State to search");
                         string state = Console.ReadLine();
                         List<Contact> contact1 = new List<Contact>();
-                        int count = 0;
+                        Console.WriteLine("The persons in the state " + state + " are: ");
                         foreach (var data in dict)
                         {
                             contact1 = data.Value.Where(x => x.State.Equals(state)).ToList();

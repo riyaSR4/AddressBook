@@ -12,6 +12,7 @@ namespace AddressBook
 
         List<Contact> createAddressBook = new List<Contact>();
         Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
+        int count = 0;
         public void CreateContact()
         {
             Console.WriteLine("Enter the details\n 1.First Name:\n 2.Last Name:\n 3.Address:\n 4.City:\n 5.State:\n" +
@@ -27,15 +28,29 @@ namespace AddressBook
                 PhoneNumber = Console.ReadLine(),
                 Email = Console.ReadLine()
             };
-            Console.WriteLine("The entered details:\n" + "First Name:" + contact.FirstName + '\n' 
-                + "Last Name:" + contact.LastName + '\n' + "Address:" + contact.Address + '\n' + "City:"
-                + contact.City + '\n' + "State:" + contact.State + '\n' + "Zip:" + contact.Zip + '\n' 
-                + "PhoneNumber:" + contact.PhoneNumber + '\n' + "Email:" + contact.Email + '\n');
-            createAddressBook.Add(contact);
+            foreach (var data in dict)
+            {
+                foreach (var item in data.Value)
+                {
+                    if (item.FirstName.Equals(contact.FirstName))
+                    {
+                        Console.WriteLine("Name already exists");
+                        count++;
+                    }
+                }
+            }
+            if (count == 0)
+            {
+                Console.WriteLine("The entered details:\n" + "First Name:" + contact.FirstName + '\n'
+                     + "Last Name:" + contact.LastName + '\n' + "Address:" + contact.Address + '\n' + "City:"
+                     + contact.City + '\n' + "State:" + contact.State + '\n' + "Zip:" + contact.Zip + '\n'
+                     + "PhoneNumber:" + contact.PhoneNumber + '\n' + "Email:" + contact.Email + '\n');
+                createAddressBook.Add(contact);
+            }
         }
         public void AddAddressBookToDictionary()
         {
-            Console.WriteLine("Enter unique name");
+            Console.WriteLine("Enter the name");
             string uniqueName = Console.ReadLine();
             dict.Add(uniqueName, createAddressBook);
             createAddressBook = new List<Contact>();
@@ -122,5 +137,6 @@ namespace AddressBook
                 }
             }
         }
+        
     }
 }

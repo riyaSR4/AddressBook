@@ -139,6 +139,7 @@ namespace AddressBook
         }
         public void SearchByCityOrState()
         {
+            int CityCount=0, StateCount=0;
             bool flag = true;
             while (flag)
             {
@@ -157,8 +158,10 @@ namespace AddressBook
                             foreach (var Contact in contact)
                             {
                                 Console.WriteLine(Contact.FirstName + " " + Contact.LastName);
+                                CityCount++;
                             }
-                        }                        
+                        }
+                        Console.WriteLine("Number of persons in " + city + " is: " + CityCount);
                         break;
                     case 2:
                         Console.WriteLine("Enter the State to search");
@@ -171,8 +174,10 @@ namespace AddressBook
                             foreach (var Contact in contact1)
                             {
                                 Console.WriteLine(Contact.FirstName + " " + Contact.LastName);
+                                StateCount++;
                             }
                         }
+                        Console.WriteLine("Number of persons in " + state + " is: " + StateCount);
                         break;
                     case 3:
                         flag = false;
@@ -180,6 +185,5 @@ namespace AddressBook
                 }
             }
         }
-
     }
 }

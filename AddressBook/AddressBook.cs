@@ -137,6 +137,48 @@ namespace AddressBook
                 }
             }
         }
-        
+        public void SearchByCityOrState()
+        {
+            bool flag = true;
+            while (flag)
+            {
+                Console.WriteLine("1.Search by City\n 2.Search by State\n 3.Exit");
+                int option = Convert.ToInt32(Console.ReadLine());
+                switch (option)
+                {
+                    case 1:
+                        Console.WriteLine("Enter the city to search");
+                        string city = Console.ReadLine();
+                        List<Contact> contact = new List<Contact>();
+                        foreach (var data in dict)
+                        {
+                            contact = data.Value.Where(x => x.City.Equals(city)).ToList();
+                            foreach (var Contact in contact)
+                            {
+                                Console.WriteLine(Contact.FirstName + " " + Contact.LastName);
+                            }
+                        }                        
+                        break;
+                    case 2:
+                        Console.WriteLine("Enter the State to search");
+                        string state = Console.ReadLine();
+                        List<Contact> contact1 = new List<Contact>();
+                        int count = 0;
+                        foreach (var data in dict)
+                        {
+                            contact1 = data.Value.Where(x => x.State.Equals(state)).ToList();
+                            foreach (var Contact in contact1)
+                            {
+                                Console.WriteLine(Contact.FirstName + " " + Contact.LastName);
+                            }
+                        }
+                        break;
+                    case 3:
+                        flag = false;
+                        break;
+                }
+            }
+        }
+
     }
 }

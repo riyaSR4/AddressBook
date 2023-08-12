@@ -12,6 +12,8 @@ namespace AddressBook
 
         List<Contact> createAddressBook = new List<Contact>();
         Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> state = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> city = new Dictionary<string, List<Contact>>();
         int count = 0;
         public void CreateContact()
         {
@@ -137,48 +139,55 @@ namespace AddressBook
                 }
             }
         }
-        public void SearchByCityOrState()
+        public void SearchByState()
         {
-            bool flag = true;
-            while (flag)
+            foreach (var data in dict.Values)
             {
-                Console.WriteLine("1.Search by City\n 2.Search by State\n 3.Exit");
-                int option = Convert.ToInt32(Console.ReadLine());
-                switch (option)
+                foreach (var item in data)
                 {
-                    case 1:
-                        Console.WriteLine("Enter the city to search");
-                        string city = Console.ReadLine();
-                        List<Contact> contact = new List<Contact>();
-                        foreach (var data in dict)
+                    if (!state.Keys.Equals(item.State))
+                    {
+                        List<Contact> list = new List<Contact>();
+                        list.Add(item);
+                        state.Add(item.State, list);
+                    }
+                    else
+                    {
+                        foreach (var states in state)
                         {
-                            contact = data.Value.Where(x => x.City.Equals(city)).ToList();
-                            foreach (var Contact in contact)
+                            if (states.Key.Equals(item.State))
                             {
-                                Console.WriteLine(Contact.FirstName + " " + Contact.LastName);
-                            }
-                        }                        
-                        break;
-                    case 2:
-                        Console.WriteLine("Enter the State to search");
-                        string state = Console.ReadLine();
-                        List<Contact> contact1 = new List<Contact>();
-                        int count = 0;
-                        foreach (var data in dict)
-                        {
-                            contact1 = data.Value.Where(x => x.State.Equals(state)).ToList();
-                            foreach (var Contact in contact1)
-                            {
-                                Console.WriteLine(Contact.FirstName + " " + Contact.LastName);
+                                states.Value.Add(item);
                             }
                         }
-                        break;
-                    case 3:
-                        flag = false;
-                        break;
+                    }
                 }
             }
         }
-
+        public void SearchByCity()
+        {
+            foreach (var data in dict.Values)
+            {
+                foreach (var item in data)
+                {
+                    if (!city.Keys.Equals(item.City))
+                    {
+                        List<Contact> list = new List<Contact>();
+                        list.Add(item);
+                        city.Add(item.City, list);
+                    }
+                    else
+                    {
+                        foreach (var cities in city)
+                        {
+                            if (cities.Key.Equals(item.City))
+                            {
+                                cities.Value.Add(item);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

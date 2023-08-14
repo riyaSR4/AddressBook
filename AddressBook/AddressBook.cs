@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,8 +13,8 @@ namespace AddressBook
 
         List<Contact> createAddressBook = new List<Contact>();
         Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
-        Dictionary<string, List<Contact>> state = new Dictionary<string, List<Contact>>();
-        Dictionary<string, List<Contact>> city = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> StateCount = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> CityCount = new Dictionary<string, List<Contact>>();
         int count = 0;
         public void CreateContact()
         {
@@ -139,53 +140,50 @@ namespace AddressBook
                 }
             }
         }
-        public void SearchByState()
+        public void SearchByCityOrState()
+
         {
-            foreach (var data in dict.Values)
+            bool flag = true;
+            while (flag)
             {
-                foreach (var item in data)
+                Console.WriteLine("1.Search by City\n 2.Search by State\n 3.Exit");
+                int option = Convert.ToInt32(Console.ReadLine());
+                switch (option)
                 {
-                    if (!state.Keys.Equals(item.State))
-                    {
-                        List<Contact> list = new List<Contact>();
-                        list.Add(item);
-                        state.Add(item.State, list);
-                    }
-                    else
-                    {
-                        foreach (var states in state)
+                    case 1:
+                        Console.WriteLine("Enter the city to search");
+                        string city = Console.ReadLine();
+                        List<Contact> contact = new List<Contact>();
+                        Console.WriteLine("The persons in the city are: ");
+                        foreach (var data in dict)
                         {
-                            if (states.Key.Equals(item.State))
+                            contact = data.Value.Where(x => x.City == city).ToList();
+                            foreach (var Contact in contact)
                             {
-                                states.Value.Add(item);
+                                Console.WriteLine(Contact.FirstName + " " + Contact.LastName);
+                                CityCount.Add(data.Key, contact);
                             }
                         }
-                    }
-                }
-            }
-        }
-        public void SearchByCity()
-        {
-            foreach (var data in dict.Values)
-            {
-                foreach (var item in data)
-                {
-                    if (!city.Keys.Equals(item.City))
-                    {
-                        List<Contact> list = new List<Contact>();
-                        list.Add(item);
-                        city.Add(item.City, list);
-                    }
-                    else
-                    {
-                        foreach (var cities in city)
+                        break;
+                    case 2:
+                        Console.WriteLine("Enter the State to search");
+                        string state = Console.ReadLine();
+                        Console.WriteLine("The persons in the state are: ");
+                        List<Contact> contact1 = new List<Contact>();
+                        foreach (var data in dict)
                         {
-                            if (cities.Key.Equals(item.City))
+                            contact1 = data.Value.Where(x => x.State.Equals(state)).ToList();
+                            foreach (var Contact in contact1)
                             {
-                                cities.Value.Add(item);
+
+                                Console.WriteLine(Contact.FirstName + " " + Contact.LastName);
+                                StateCount.Add(data.Key, contact1);
                             }
                         }
-                    }
+                        break;
+                    case 3:
+                        flag = false;
+                        break;
                 }
             }
         }

@@ -167,11 +167,7 @@ namespace AddressBook
                     case 2:
                         Console.WriteLine("Enter the State to search");
                         string state = Console.ReadLine();
-
                         Console.WriteLine("The persons in the state are: ");
-
-                        Console.WriteLine("The persons in the state " + state + " are: ");
-
                         List<Contact> contact1 = new List<Contact>();
                         foreach (var data in dict)
                         {

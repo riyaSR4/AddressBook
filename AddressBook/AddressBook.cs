@@ -13,6 +13,7 @@ namespace AddressBook
         List<Contact> createAddressBook = new List<Contact>();
         Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
         Dictionary<string, List<Contact>> state = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> city = new Dictionary<string, List<Contact>>();
         int count = 0;
         public void CreateContact()
         {
@@ -138,7 +139,6 @@ namespace AddressBook
                 }
             }
         }
-        
         public void SearchByState()
         {
             foreach (var data in dict.Values)
@@ -164,7 +164,30 @@ namespace AddressBook
                 }
             }
         }
-        
+        public void SearchByCity()
+        {
+            foreach (var data in dict.Values)
+            {
+                foreach (var item in data)
+                {
+                    if (!city.Keys.Equals(item.City))
+                    {
+                        List<Contact> list = new List<Contact>();
+                        list.Add(item);
+                        city.Add(item.City, list);
+                    }
+                    else
+                    {
+                        foreach (var cities in city)
+                        {
+                            if (cities.Key.Equals(item.City))
+                            {
+                                cities.Value.Add(item);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
-

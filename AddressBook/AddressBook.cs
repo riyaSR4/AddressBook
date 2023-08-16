@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,8 @@ namespace AddressBook
 
         List<Contact> createAddressBook = new List<Contact>();
         Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> state = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> city = new Dictionary<string, List<Contact>>();
         int count = 0;
         public void CreateContact()
         {
@@ -63,7 +66,7 @@ namespace AddressBook
         }
         public void EditContact(string name, string contactName)
         {
-            foreach(var data in dict)
+            foreach (var data in dict)
             {
                 if (data.Key.Equals(name))
                 {
@@ -139,11 +142,11 @@ namespace AddressBook
         }
         public void SearchByCityOrState()
         {
-            int CityCount=0, StateCount=0;
+            int cityCount = 0, stateCount = 0;
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("1.Search by City\n 2.Search by State\n 3.Exit");
+                Console.WriteLine(" 1.Search by City\n 2.Search by State\n 3.Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -151,33 +154,36 @@ namespace AddressBook
                         Console.WriteLine("Enter the city to search");
                         string city = Console.ReadLine();
                         List<Contact> contact = new List<Contact>();
-                        Console.WriteLine("The persons in the city " + city + " are: ");
+                        Console.WriteLine("The persons in the city are: ");
                         foreach (var data in dict)
                         {
-                            contact = data.Value.Where(x => x.City.Equals(city)).ToList();
+                            contact = data.Value.Where(x => x.City == city).ToList();
                             foreach (var Contact in contact)
                             {
                                 Console.WriteLine(Contact.FirstName + " " + Contact.LastName);
-                                CityCount++;
+                                this.city.Add(data.Key, contact);
+                                cityCount++;
                             }
                         }
-                        Console.WriteLine("Number of persons in " + city + " is: " + CityCount);
+                        Console.WriteLine("Number of persons in the city : " + cityCount);
                         break;
                     case 2:
                         Console.WriteLine("Enter the State to search");
                         string state = Console.ReadLine();
+                        Console.WriteLine("The persons in the state are: ");
                         List<Contact> contact1 = new List<Contact>();
-                        Console.WriteLine("The persons in the state " + state + " are: ");
                         foreach (var data in dict)
                         {
                             contact1 = data.Value.Where(x => x.State.Equals(state)).ToList();
                             foreach (var Contact in contact1)
                             {
+
                                 Console.WriteLine(Contact.FirstName + " " + Contact.LastName);
-                                StateCount++;
+                                this.state.Add(data.Key, contact1);
+                                stateCount++;
                             }
                         }
-                        Console.WriteLine("Number of persons in " + state + " is: " + StateCount);
+                        Console.WriteLine("Number of persons in the state : " + stateCount);
                         break;
                     case 3:
                         flag = false;
@@ -185,5 +191,6 @@ namespace AddressBook
                 }
             }
         }
+
     }
 }

@@ -13,8 +13,13 @@ namespace AddressBook
 
         List<Contact> createAddressBook = new List<Contact>();
         Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
+<<<<<<< HEAD
         Dictionary<string, List<Contact>> StateCount = new Dictionary<string, List<Contact>>();
         Dictionary<string, List<Contact>> CityCount = new Dictionary<string, List<Contact>>();
+=======
+        Dictionary<string, List<Contact>> state = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> city = new Dictionary<string, List<Contact>>();
+>>>>>>> UC10-CountByCityOrState
         int count = 0;
         public void CreateContact()
         {
@@ -142,6 +147,10 @@ namespace AddressBook
         }
         public void SearchByCityOrState()
         {
+<<<<<<< HEAD
+=======
+            int cityCount = 0, stateCount = 0;
+>>>>>>> UC10-CountByCityOrState
             bool flag = true;
             while (flag)
             {
@@ -160,18 +169,30 @@ namespace AddressBook
                             foreach (var Contact in contact)
                             {
                                 Console.WriteLine(Contact.FirstName + " " + Contact.LastName);
+<<<<<<< HEAD
                                 CityCount.Add(data.Key, contact);
                             }
                         }
+=======
+                                this.city.Add(data.Key, contact);
+                                cityCount++;
+                            }
+                        }
+                        Console.WriteLine("Number of persons in the city : " + cityCount);
+>>>>>>> UC10-CountByCityOrState
                         break;
                     case 2:
                         Console.WriteLine("Enter the State to search");
                         string state = Console.ReadLine();
+<<<<<<< HEAD
 
                         Console.WriteLine("The persons in the state are: ");
 
                         Console.WriteLine("The persons in the state " + state + " are: ");
 
+=======
+                        Console.WriteLine("The persons in the state are: ");
+>>>>>>> UC10-CountByCityOrState
                         List<Contact> contact1 = new List<Contact>();
                         foreach (var data in dict)
                         {
@@ -180,9 +201,17 @@ namespace AddressBook
                             {
 
                                 Console.WriteLine(Contact.FirstName + " " + Contact.LastName);
+<<<<<<< HEAD
                                 StateCount.Add(data.Key, contact1);
                             }
                         }
+=======
+                                this.state.Add(data.Key, contact1);
+                                stateCount++;
+                            }
+                        }
+                        Console.WriteLine("Number of persons in the state : " + stateCount);
+>>>>>>> UC10-CountByCityOrState
                         break;
                     case 3:
                         flag = false;
@@ -190,5 +219,6 @@ namespace AddressBook
                 }
             }
         }
+
     }
 }

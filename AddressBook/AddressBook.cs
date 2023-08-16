@@ -59,10 +59,10 @@ namespace AddressBook
             createAddressBook = new List<Contact>();
         }
 
-        public void AddToJsonFile(string filePath)
+        public void AddToJsonFile(string jsonFilePath)
         {
             var json = JsonConvert.SerializeObject(dict);
-            File.WriteAllText(filePath, json);
+            File.WriteAllText(jsonFilePath, json);
         }
         public void EditContact(string name, string contactName)
         {
@@ -297,6 +297,33 @@ namespace AddressBook
                     case 5:
                         flag = false;
                         break;
+                }
+            }
+        }
+        public void WriteFromStreamWriter(string filepath)
+        {
+            using (StreamWriter stream = File.AppendText(filepath))
+            {
+                foreach (var data in dict)
+                {
+                    stream.WriteLine(data.Key);
+                    foreach (var contact in data.Value)
+                    {
+                        stream.WriteLine(contact.FirstName + "," + contact.LastName + "," + contact.Address + "," + contact.City + "," + contact.State + "," + contact.Zip + "," + contact.PhoneNumber
+                            + "," + contact.Email);
+                    }
+                }
+                stream.Close();
+            }
+        }
+        public void ReadFromStreamReader(string filepath)
+        {
+            using (StreamReader stream = File.OpenText(filepath))
+            {
+                string s = "";
+                while ((s = stream.ReadLine()) != null)
+                {
+                    Console.WriteLine(s);
                 }
             }
         }

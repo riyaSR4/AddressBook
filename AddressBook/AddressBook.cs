@@ -191,27 +191,112 @@ namespace AddressBook
                 }
             }
         }
-        public void SortByName()
+        public void Sort()
         {
-            List<string> list = new List<string>();
-            List<Contact> contacts = new List<Contact>();
-            foreach (var data in dict)
+            bool flag = true;
+            while (flag)
             {
-                foreach (var item in data.Value)
+                List<string> list = new List<string>();
+                List<Contact> contacts = new List<Contact>();
+                Console.WriteLine(" 1.Sort by Name\n 2.Sort by City\n 3.Sort by State\n 4.Sort by Zip\n 5.Exit");
+                int option = Convert.ToInt32(Console.ReadLine());
+                switch (option)
                 {
-                    list.Add(item.FirstName);
-                    contacts.Add(item);
-                }
-            }
-            list.Sort();
-            foreach (var data in list)
-            {
-                foreach (var contact in contacts)
-                {
-                    if (contact.FirstName.Equals(data))
-                    {
-                        Console.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" + contact.Address + "\n" + contact.City + "\n" + contact.State + "\n" + contact.Zip + "\n" + contact.PhoneNumber + "\n" + contact.Email);
-                    }
+                    case 1:
+                        foreach (var data in dict)
+                        {
+                            foreach (var item in data.Value)
+                            {
+                                list.Add(item.FirstName);
+                                contacts.Add(item);
+                            }
+                        }
+                        list.Sort();
+                        foreach (var data in list)
+                        {
+                            foreach (var contact in contacts)
+                            {
+                                if (contact.FirstName.Equals(data))
+                                {
+                                    Console.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" + contact.Address + "\n" 
+                                        + contact.City + "\n" + contact.State + "\n" + contact.Zip + "\n" 
+                                        + contact.PhoneNumber + "\n" + contact.Email);
+                                }
+                            }
+                        }
+                        break;
+                    case 2:
+                        foreach (var data in dict)
+                        {
+                            foreach (var item in data.Value)
+                            {
+                                list.Add(item.City);
+                                contacts.Add(item);
+                            }
+                        }
+                        list.Sort();
+                        foreach (var data in list)
+                        {
+                            foreach (var contact in contacts)
+                            {
+                                if (contact.City.Equals(data))
+                                {
+                                    Console.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" + contact.Address + "\n" 
+                                        + contact.City + "\n" + contact.State + "\n" + contact.Zip + "\n" 
+                                        + contact.PhoneNumber + "\n" + contact.Email);
+                                }
+                            }
+                        }
+                        break;
+                    case 3:
+                        foreach (var data in dict)
+                        {
+                            foreach (var item in data.Value)
+                            {
+                                list.Add(item.State);
+                                contacts.Add(item);
+                            }
+                        }
+                        list.Sort();
+                        foreach (var data in list)
+                        {
+                            foreach (var contact in contacts)
+                            {
+                                if (contact.State.Equals(data))
+                                {
+                                    Console.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" 
+                                        + contact.Address + "\n" + contact.City + "\n" + contact.State + "\n" 
+                                        + contact.Zip + "\n" + contact.PhoneNumber + "\n" + contact.Email);
+                                }
+                            }
+                        }
+                        break;
+                    case 4:
+                        foreach (var data in dict)
+                        {
+                            foreach (var item in data.Value)
+                            {
+                                list.Add(item.Zip);
+                                contacts.Add(item);
+                            }
+                        }
+                        list.Sort();
+                        foreach (var data in list)
+                        {
+                            foreach (var contact in contacts)
+                            {
+                                if (contact.Zip.Equals(data))
+                                {
+                                    Console.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" 
+                                        + contact.Address + "\n" + contact.City + "\n" + contact.State + "\n" 
+                                        + contact.Zip + "\n" + contact.PhoneNumber + "\n" + contact.Email);
+                                }
+                            }
+                        }
+                        break;
+                    case 5:
+                        flag = false;
+                        break;
                 }
             }
         }

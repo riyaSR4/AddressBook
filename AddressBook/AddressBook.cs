@@ -53,7 +53,7 @@ namespace AddressBook
         }
         public void AddAddressBookToDictionary()
         {
-            Console.WriteLine("Enter the name");
+            Console.WriteLine("Enter the key");
             string uniqueName = Console.ReadLine();
             dict.Add(uniqueName, createAddressBook);
             createAddressBook = new List<Contact>();
@@ -132,7 +132,7 @@ namespace AddressBook
         {
             foreach (var data in dict)
             {
-                Console.WriteLine(data.Key);
+                Console.WriteLine("Key: " + data.Key);
                 foreach (var contact in data.Value)
                 {
                     Console.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" + contact.Address + "\n" + contact.City
@@ -191,6 +191,29 @@ namespace AddressBook
                 }
             }
         }
-
+        public void SortByName()
+        {
+            List<string> list = new List<string>();
+            List<Contact> contacts = new List<Contact>();
+            foreach (var data in dict)
+            {
+                foreach (var item in data.Value)
+                {
+                    list.Add(item.FirstName);
+                    contacts.Add(item);
+                }
+            }
+            list.Sort();
+            foreach (var data in list)
+            {
+                foreach (var contact in contacts)
+                {
+                    if (contact.FirstName.Equals(data))
+                    {
+                        Console.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" + contact.Address + "\n" + contact.City + "\n" + contact.State + "\n" + contact.Zip + "\n" + contact.PhoneNumber + "\n" + contact.Email);
+                    }
+                }
+            }
+        }
     }
 }

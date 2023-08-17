@@ -1,0 +1,24 @@
+{
+  "reji": [
+    {
+      "FirstName": "riya",
+      "LastName": "r",
+      "Address": "ann",
+      "City": "pta",
+      "State": "kl",
+      "Zip": "1234",
+      "PhoneNumber": "098765432456",
+      "Email": "riya@4"
+    },
+    {
+      "FirstName": "jessy ",
+      "LastName": "r",
+      "Address": "ann",
+      "City": "pta",
+      "State": "kl",
+      "Zip": "123456",
+      "PhoneNumber": "765435673256",
+      "Email": "jessy@30"
+    }
+  ]
+}

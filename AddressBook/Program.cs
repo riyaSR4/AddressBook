@@ -5,6 +5,7 @@ namespace AddressBook
     {
         const string jsonFilePath = @"D:\BridgeLabs Training\AddressBook\AddressBook\Addressbook.json";
         static string filePath = @"D:\BridgeLabs Training\AddressBook\AddressBook\Contact.txt";
+        static string csvFilePath = @"D:\BridgeLabs Training\AddressBook\AddressBook\Contact.csv";
         static void Main(string[] args)
         {
 
@@ -17,7 +18,7 @@ namespace AddressBook
                 "3.Edit Contact\n 4.Delete Contact\n " +
                 "5.Display Contact\n 6.Add to Json\n 7.Search and Count Persons in a City or State\n " +
                 "8.Sort Persons by Name, City, State and Zip\n" +
-                " 9.Read from File\n 10.Write to File\n 11.Exit");
+                " 9.Write to File\n 10.Read from File\n 11.Write as CSV File\n 12.Read as CSV File\n 13.Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -54,12 +55,18 @@ namespace AddressBook
                         createAddressBook.Sort();
                         break;
                     case 9:
-                        createAddressBook.ReadFromStreamReader(filePath);
-                        break;
-                    case 10:
                         createAddressBook.WriteFromStreamWriter(filePath);
                         break;
+                    case 10:
+                        createAddressBook.ReadFromStreamReader(filePath);
+                        break;
                     case 11:
+                        createAddressBook.WriteFromCSVfile(csvFilePath);
+                        break;
+                    case 12:
+                        createAddressBook.ReadFromCSVFile(csvFilePath);
+                        break;
+                    case 13:
                         flag = false;
                         break;
                 }
